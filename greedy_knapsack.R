@@ -2,7 +2,6 @@ set.seed(42)
 n <- 2000
 knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
-#it give another elements at the end...
 greedy_knapsack <- function(x,W){
     x$keep <- x[,2]/x[,1]
     y <- x[order(x$keep, decreasing = TRUE),]
@@ -16,17 +15,16 @@ greedy_knapsack <- function(x,W){
             value = value + y[[2]][i]
             elements <- c(elements,i)
         }else if(y[[1]][i] > W){
-            value = value + (W*y[[2]][i])/y[[1]][i]
-            elements <- c(elements,i)
             W = 0
         }
     }
-    
-    ls <- list("value" = value, "elements" = as.numeric(rownames(y)[elements]))
+    ls <- list("value" = round(value), "elements" = as.numeric(rownames(y)[elements]))
     return(ls)
 }
 
-#another method but still got the same problem
+
+#another method
+#will choose later which one perform better
 greedy_knapsack <- function(x,W){
     x$keep <- x[,2]/x[,1]
     y <- x[order(x$keep, decreasing = TRUE),]
@@ -39,13 +37,13 @@ greedy_knapsack <- function(x,W){
             value = value + y[[2]][i]
             load = load + y[[1]][i]
         }else{
-            value = value + ((W-load)/ y[[1]][i])*y[[2]][i]
-            load = load + ((W-load)/ y[[1]][i])*y[[1]][i]
+            break
         }
         elements <- c(elements,i)
         i = i+1
     }
-    ls <- list("value" = value, "elements" = as.numeric(rownames(y)[elements]))
+    ls <- list("value" = round(value), "elements" = as.numeric(rownames(y)[elements]))
     return(ls)
 }
+
 

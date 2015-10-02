@@ -7,11 +7,18 @@ brute_force_knapsack <- function(x, W){
     stopifnot(x[1] >= 0)
     stopifnot(x[2] >= 0)
     
-    poss<-matrix(0,nrow=nrow(w),ncol=32)
-    for (i in 1:2^nrow(w)){
+    poss<-matrix(0,nrow=2^nrow(w),ncol=32)
+    for (i in 1:(2^nrow(w))){
     poss[i,]<-as.numeric(intToBits(i))}
-    for( i in 1:nrow(poss))
-    poss[1,]*w[1]
-    
+    temp<-NULL
+    temp.value<-NULL
+    ind<-NULL
+    for( i in 1:nrow(poss)){
+      if(sum(poss[i,]*x[1])<W){
+        ind[length(ind)]<-which(poss[i,]==1)
+   temp[length(temp)+1]<-sum(poss[i,]*x[1])
+   temp.value[length(temp.value)+1]<-sum(poss[i,]*x[2])
+      }
+    }
     
 }

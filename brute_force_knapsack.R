@@ -3,9 +3,11 @@ n <- 200
 knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
 brute_force_knapsack <- function(x, W){
-    stopifnot(is.data.frame(x))
-    stopifnot(x[1] >= 0)
-    stopifnot(x[2] >= 0)
+    #stopifnot(is.data.frame(x))
+  stopifnot(class(x)=="data.frame") #is faster
+    #stopifnot(x[1] >= 0)
+  #stopifnot(x[2] >= 0)
+    stopifnot(all(x >= 0)) #a lot faster
     
     poss<-matrix(0,nrow=2^nrow(x),ncol=32)
     for (i in 1:(2^nrow(x))){

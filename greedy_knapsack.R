@@ -3,6 +3,9 @@ n <- 2000
 knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
 greedy_knapsack <- function(x,W){
+    stopifnot(class(x)=="data.frame")
+    stopifnot(all(x >= 0))
+    
     x$keep <- x[,2]/x[,1]
     y <- x[order(x$keep, decreasing = TRUE),]
     value <- 0
@@ -24,8 +27,11 @@ greedy_knapsack <- function(x,W){
 
 
 #another method
-#will choose later which one perform better
+#will choose later which one perform better or which one is easy to optimize 
 greedy_knapsack <- function(x,W){
+    stopifnot(class(x)=="data.frame")
+    stopifnot(all(x >= 0))
+    
     x$keep <- x[,2]/x[,1]
     y <- x[order(x$keep, decreasing = TRUE),]
     load <- 0

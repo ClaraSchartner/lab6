@@ -23,4 +23,5 @@ brute_force_knapsack <- function(x, W){
     
     numberofbin<-ind[which(temp.value==max(temp.value))[1]]
    print( which(poss[numberofbin,]==1))
+   print( sum(poss[numberofbin,]*x[2]))
 }

@@ -2,12 +2,9 @@ set.seed(42)
 n <- 2000
 knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
-test <- knapsack_objects[1:8,]
-
 knapsack_dynamic <- function(x,W){
-    stopifnot(is.data.frame(x))
-    stopifnot(x[1] >= 0)
-    stopifnot(x[2] >= 0)
+    stopifnot(class(x)=="data.frame")
+    stopifnot(all(x >= 0))
     
     m <- data.frame()
     for(j in 1:(W+1)){
@@ -25,27 +22,19 @@ knapsack_dynamic <- function(x,W){
     }
 
     value <- m[i,j]
-    #still can't find the way to calculate the elements
-    #for(){
-        
-    #}
-    elements <- c(0)
-    ls <- list("value" = round(value), "elements" = elements)
+   
+    i = nrow(x) + 1
+    k = W + 1
+    elements <- c()
+    while(i > 1 & k > 1){
+        if(m[i,k] != m[i-1,k]){
+            elements = c(rownames(m)[i-1],elements)
+            k = k - x[[1]][i-1]
+            i = i - 1
+        }else{
+            i = i - 1
+        }
+    }
+    ls <- list("value" = round(value), "elements" = as.numeric(elements))
     return(ls)
 } 
-
-w <- c(2,3,4,5)
-v <- c(3,4,5,6)
-x <- data.frame(w,v)
-knapsack_dynamic(x,W=5)
-
-#it should be like this
-#V1 V2 V3 V4 V5 V6
-#1  0  0  0  0  0  0
-#2  0  0  3  3  3  3
-#3  0  0  3  4  4  7
-#4  0  0  3  4  5  7
-#5  0  0  3  4  5  7
-
-#value=7
-#elements = 1 2

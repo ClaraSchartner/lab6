@@ -2,7 +2,8 @@ set.seed(42)
 n <- 2000
 knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
-greedy_knapsack <- function(x,W){
+#this one is a little bit faster!
+greedy_knapsack1 <- function(x,W){
     stopifnot(class(x)=="data.frame")
     stopifnot(all(x >= 0))
     
@@ -28,7 +29,7 @@ greedy_knapsack <- function(x,W){
 
 #another method
 #will choose later which one perform better or which one is easy to optimize 
-greedy_knapsack <- function(x,W){
+greedy_knapsack2 <- function(x,W){
     stopifnot(class(x)=="data.frame")
     stopifnot(all(x >= 0))
     
@@ -53,3 +54,16 @@ greedy_knapsack <- function(x,W){
 }
 
 
+#x=knapsack_objects[1:1000000,]
+#W=2000
+#microbenchmark(
+#    greedy_knapsack1(x,W),
+#    greedy_knapsack2(x,W)
+#)
+#Unit: seconds
+#expr      min       lq     mean   median
+#greedy_knapsack1(x, W) 1.817497 1.996132 2.173219 2.077166
+#greedy_knapsack2(x, W) 1.635980 2.003170 2.208444 2.111358
+#uq      max neval
+#2.280608 3.553653   100
+#2.352091 3.798140   100

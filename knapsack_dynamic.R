@@ -38,3 +38,14 @@ knapsack_dynamic <- function(x,W){
     ls <- list("value" = round(value), "elements" = as.numeric(elements))
     return(ls)
 } 
+
+#x=knapsack_objects[1:12,]
+#W=2000
+#microbenchmark(
+#    knapsack_dynamic(x,W)
+#)
+#Unit: seconds
+#expr      min       lq     mean   median
+#knapsack_dynamic(x, W) 4.429742 4.565713 4.891237 4.778428
+#uq      max neval
+#5.112855 6.468721   100

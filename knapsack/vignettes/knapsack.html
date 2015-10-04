@@ -96,6 +96,19 @@ knapsack_objects &lt;-<span class="kw">data.frame</span>(<span class="dt">w=</sp
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">brute_force_knapsack</span>(<span class="dt">x=</span>knapsack_objects[<span class="dv">1</span>:<span class="dv">8</span>,],<span class="dt">W=</span><span class="dv">3500</span>)</code></pre>
 <pre><code>## [1] 5 8
 ## [1] 16770.38</code></pre>
+<p>Since the <code>brute_force_kanpsack</code> is computationally expensive the function <code>par_brute_force_knapsack</code> was written, which allows you to parallelize it. This function works only on Windows.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par_brute_force_knapsack</span>(<span class="dt">x=</span>knapsack_objects[<span class="dv">1</span>:<span class="dv">8</span>,],<span class="dt">W=</span><span class="dv">3500</span>,<span class="dt">par=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>## 
+## Attaching package: 'snow'
+## 
+## Die folgenden Objekte sind maskiert von 'package:parallel':
+## 
+##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+##     clusterExport, clusterMap, clusterSplit, makeCluster,
+##     parApply, parCapply, parLapply, parRapply, parSapply,
+##     splitIndices, stopCluster</code></pre>
+<pre><code>## [1] 5 8
+## [1] 16770.38</code></pre>
 </div>
 
 

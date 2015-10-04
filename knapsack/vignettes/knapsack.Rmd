@@ -15,10 +15,7 @@ The package  `Knapsack` includes functions which are implementations of differen
 - `greedy_knapsack`
 - `dynamic_knapsack`
 
-## Further features
 
-It also includes a function called `better_brute_force_knapsack` which runs slightly faster.
-The function `par_brute_force_knapsack` allows you to specify to parallelize some computations.
 
 ## Background
 
@@ -55,4 +52,13 @@ knapsack_dynamic(x=knapsack_objects[1:4,],W=3500)
 ```{r}
 brute_force_knapsack(x=knapsack_objects[1:8,],W=3500)
 ```
+## Further features
 
+It also includes a function called `better_brute_force_knapsack` which runs slightly faster.
+The function `par_brute_force_knapsack` allows you to specify to parallelize some computations.
+
+Since the `brute_force_kanpsack` is computationally expensive the function `par_brute_force_knapsack` was written, which allows you to parallelize it.
+This function works only on Windows.
+```{r}
+par_brute_force_knapsack(x=knapsack_objects[1:8,],W=3500,par=TRUE)
+```

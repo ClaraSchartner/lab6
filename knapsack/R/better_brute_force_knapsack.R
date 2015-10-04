@@ -18,6 +18,10 @@ better_brute_force_knapsack <- function(x, W){
   temp<-select*temp
   temp.value<-select*temp.value
   numberofbin<-which(temp.value==max(temp.value))[1]
-  print( which(poss[numberofbin,]==1))
-  print( sum(poss[numberofbin,]*x[2]))
+  
+  value <- sum(poss[numberofbin,]*x[2])
+  elements <- which(poss[numberofbin,]==1)
+  
+  ls <- list("value"=round(value), "elements"=elements)
+  return(ls)
 }

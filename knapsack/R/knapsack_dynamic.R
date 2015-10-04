@@ -1,6 +1,24 @@
-set.seed(42)
-n <- 2000
-knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
+#'0/1 knapsack problem
+#'
+#'It is one approach to solve the knapsack problem by using Dynamic-Programming.
+#'
+#'@param x a dataframe consists of two variables \code{w} and \code{v}. Both variables contain only positive values.
+#'\itemize{
+#'  \item w: weight of each element in the knapsack
+#'  \item v: value of each element in the knapsack
+#'}
+#'
+#'@param W a numeric value of the knapsack size.
+#'
+#'@return A list of maximum knapsack value and which elements that can add to the knapsack.
+#'
+#'@references \url{https://en.wikipedia.org/wiki/Knapsack_problem#0.2F1_knapsack_problem}
+#'
+
+
+#set.seed(42)
+#n <- 2000
+#knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
 knapsack_dynamic <- function(x,W){
     stopifnot(class(x)=="data.frame")

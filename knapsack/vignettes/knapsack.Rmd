@@ -1,0 +1,58 @@
+---
+title: "Knapsack"
+author: "Clara Schartner and Araya Eamrurksiri"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The package  `Knapsack` includes functions which are implementations of different algorithm towards solving the Knapsack problem.
+
+- `brute_force_knapsack` 
+- `greedy_knapsack`
+- `dynamic_knapsack`
+
+## Further features
+
+It also includes a function called `better_brute_force_knapsack` which runs slightly faster.
+The function `par_brute_force_knapsack` allows you to specify to parallelize some computations.
+
+## Background
+
+The knapsack problem is a discrete optimization problem where we have a knapsack that can take a
+limited weight W and we want to fill this knapsack with a number of items i = 1, ...,n, each with a weight wi and a value $v_{i}$. The goal is to find the knapsack with the largest value of the elements addedto the knapsack.
+
+
+## Examples
+
+First you have to load the library knapsack.
+
+```{r}
+library(knapsack)
+```
+Then you have to construct a dataframe of the right sizes to input.
+The dataframe has to have a column with the weight of each object and a column with the value of it.
+```{r}
+set.seed(42)
+n <- 2000
+knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
+```
+The three different functions solve this problem in a different way.
+But the input is always the same: First a dataframe with the weights and value and a threshold for the weight.
+```{r}
+greedy_knapsack(x=knapsack_objects[1:8,],W=3500)
+```
+
+
+```{r}
+knapsack_dynamic(x=knapsack_objects[1:4,],W=3500)
+```
+
+
+```{r}
+brute_force_knapsack(x=knapsack_objects[1:8,],W=3500)
+```
+

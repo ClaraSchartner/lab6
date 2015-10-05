@@ -54,7 +54,7 @@ brute_force_knapsack(x=knapsack_objects[1:8,],W=3500)
 ```
 ## Further features
 
-It also includes a function called `better_brute_force_knapsack` which runs slightly faster.
+
 The function `par_brute_force_knapsack` allows you to specify to parallelize some computations.
 
 Since the `brute_force_kanpsack` is computationally expensive the function `par_brute_force_knapsack` was written, which allows you to parallelize it.
@@ -62,3 +62,31 @@ This function works only on Windows.
 ```{r}
 par_brute_force_knapsack(x=knapsack_objects[1:8,],W=3500,par=TRUE)
 ```
+
+##Answers
+
+```{r,echo=FALSE}
+#library(knapsack)
+set.seed(42)
+n <- 1000000
+knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
+```
+
+```{r}
+system.time(old_brute_force_knapsack(knapsack_objects[1:16,],W=2000))
+```
+
+```{r}
+system.time(brute_force_knapsack(knapsack_objects[1:16,],W=2000))
+```
+
+```{r,eval=FALSE}
+system.time(knapsack_dynamic(knapsack_objects[1:500,],W=2000))
+#  User      System elapsed 
+#165.76        0.15      168.36 
+```
+
+```{r}
+system.time(greedy_knapsack(knapsack_objects[1:1000000,],W=2000))
+```
+

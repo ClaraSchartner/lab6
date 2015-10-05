@@ -10,7 +10,7 @@
 
 <meta name="author" content="Clara Schartner and Araya Eamrurksiri" />
 
-<meta name="date" content="2015-10-04" />
+<meta name="date" content="2015-10-05" />
 
 <title>Knapsack</title>
 
@@ -54,7 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">Knapsack</h1>
 <h4 class="author"><em>Clara Schartner and Araya Eamrurksiri</em></h4>
-<h4 class="date"><em>2015-10-04</em></h4>
+<h4 class="date"><em>2015-10-05</em></h4>
 </div>
 
 
@@ -64,10 +64,6 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><code>greedy_knapsack</code></li>
 <li><code>dynamic_knapsack</code></li>
 </ul>
-<div id="further-features" class="section level2">
-<h2>Further features</h2>
-<p>It also includes a function called <code>better_brute_force_knapsack</code> which runs slightly faster. The function <code>par_brute_force_knapsack</code> allows you to specify to parallelize some computations.</p>
-</div>
 <div id="background" class="section level2">
 <h2>Background</h2>
 <p>The knapsack problem is a discrete optimization problem where we have a knapsack that can take a limited weight W and we want to fill this knapsack with a number of items i = 1, …,n, each with a weight wi and a value <span class="math">\(v_{i}\)</span>. The goal is to find the knapsack with the largest value of the elements addedto the knapsack.</p>
@@ -94,8 +90,15 @@ knapsack_objects &lt;-<span class="kw">data.frame</span>(<span class="dt">w=</sp
 ## $elements
 ## [1] 4</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">brute_force_knapsack</span>(<span class="dt">x=</span>knapsack_objects[<span class="dv">1</span>:<span class="dv">8</span>,],<span class="dt">W=</span><span class="dv">3500</span>)</code></pre>
-<pre><code>## [1] 5 8
-## [1] 16770.38</code></pre>
+<pre><code>## $value
+## [1] 16770
+## 
+## $elements
+## [1] 5 8</code></pre>
+</div>
+<div id="further-features" class="section level2">
+<h2>Further features</h2>
+<p>The function <code>par_brute_force_knapsack</code> allows you to specify to parallelize some computations.</p>
 <p>Since the <code>brute_force_kanpsack</code> is computationally expensive the function <code>par_brute_force_knapsack</code> was written, which allows you to parallelize it. This function works only on Windows.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par_brute_force_knapsack</span>(<span class="dt">x=</span>knapsack_objects[<span class="dv">1</span>:<span class="dv">8</span>,],<span class="dt">W=</span><span class="dv">3500</span>,<span class="dt">par=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## 
@@ -109,6 +112,27 @@ knapsack_objects &lt;-<span class="kw">data.frame</span>(<span class="dt">w=</sp
 ##     splitIndices, stopCluster</code></pre>
 <pre><code>## [1] 5 8
 ## [1] 16770.38</code></pre>
+</div>
+<div id="answers" class="section level2">
+<h2>Answers</h2>
+<pre><code>## Warning: ungenutzte Verbindung 8 (&lt;-Clara:11338) geschlossen</code></pre>
+<pre><code>## Warning: ungenutzte Verbindung 7 (&lt;-Clara:11338) geschlossen</code></pre>
+<pre><code>## Warning: ungenutzte Verbindung 6 (&lt;-Clara:11338) geschlossen</code></pre>
+<pre><code>## Warning: ungenutzte Verbindung 5 (&lt;-Clara:11338) geschlossen</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">old_brute_force_knapsack</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">16</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
+<pre><code>##    user  system elapsed 
+##   20.92    0.02   20.96</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#User      System elapsed </span>
+<span class="co">#21.54        0.01       21.77 </span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">brute_force_knapsack</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">16</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
+<pre><code>##    user  system elapsed 
+##    0.64    0.02    0.66</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">knapsack_dynamic</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">500</span>,],<span class="dt">W=</span><span class="dv">2000</span>))
+<span class="co">#  User      System elapsed </span>
+<span class="co">#165.76        0.15      168.36 </span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">greedy_knapsack</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">1000000</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
+<pre><code>##    user  system elapsed 
+##    2.47    0.02    2.49</code></pre>
 </div>
 
 

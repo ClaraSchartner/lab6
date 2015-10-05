@@ -31,4 +31,4 @@ par_brute_force_knapsack <- function(x, W,par=FALSE){
   print( sum(poss[numberofbin,]*x[2]))
 }
 
-par_brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
+#par_brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)

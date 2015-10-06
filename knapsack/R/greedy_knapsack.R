@@ -36,10 +36,12 @@ greedy_knapsack <- function(x,W){
             value = value + y[[2]][i]
             elements <- c(elements,i)
         }else if(y[[1]][i] > W){
+            value = value + (W/y[[1]][i])*y[[2]][i]
+            elements <- c(elements,i)
             W = 0
         }
     }
-    ls <- list("value" = round(value), "elements" = as.numeric(rownames(y)[elements]))
+    ls <- list("value" = value, "elements" = as.numeric(rownames(y)[elements]))
     return(ls)
 }
 

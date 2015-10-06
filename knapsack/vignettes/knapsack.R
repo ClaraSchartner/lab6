@@ -26,12 +26,9 @@ knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif
 
 ## ------------------------------------------------------------------------
 system.time(old_brute_force_knapsack(knapsack_objects[1:16,],W=2000))
-#User      System elapsed 
-#21.54        0.01       21.77 
 
 ## ------------------------------------------------------------------------
 system.time(brute_force_knapsack(knapsack_objects[1:16,],W=2000))
- 
 
 ## ----eval=FALSE----------------------------------------------------------
 #  system.time(knapsack_dynamic(knapsack_objects[1:500,],W=2000))

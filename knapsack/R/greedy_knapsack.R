@@ -44,18 +44,3 @@ greedy_knapsack <- function(x,W){
     ls <- list("value" = value, "elements" = as.numeric(rownames(y)[elements]))
     return(ls)
 }
-
-
-#x=knapsack_objects[1:1000000,]
-#W=2000
-#microbenchmark(
-#    greedy_knapsack(x,W),
-#    greedy_knapsack2(x,W)
-#)
-#Unit: seconds
-#expr      min       lq     mean   median
-#greedy_knapsack(x, W) 1.817497 1.996132 2.173219 2.077166
-#greedy_knapsack2(x, W) 1.635980 2.003170 2.208444 2.111358
-#uq      max neval
-#2.280608 3.553653   100
-#2.352091 3.798140   100

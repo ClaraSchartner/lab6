@@ -24,24 +24,21 @@ knapsack_dynamic <- function(x,W){
     stopifnot(class(x)=="data.frame")
     stopifnot(all(x >= 0))
     
-    #  m <- data.frame()
-    # for(j in 1:(W+1)){
-    #      m[1,j] = 0
-    # }
+    nr <- nrow(x) + 1
+    m <- matrix(0, nrow = nr, ncol = W + 1 )
+    rownames(m) <- c(1:nr)
     
-    m<- as.data.frame(matrix(rep(0,(W+1)),nrow=1))
-    
-    for(i in 2:(nrow(x)+1)){
-        for(j in 1:(W+1)){
-            if(x[[1]][i-1] <= j-1){
-                m[i,j] = max(m[i-1,j], m[i-1,(j-x[[1]][i-1])] + x[[2]][i-1])
+    for(i in 1:nrow(x)){
+        for(j in 0:W){
+            if(x[i,1] <= j){
+                m[i+1,j+1] = max(m[i,j+1], m[i,(j-x[i,1]+1)] + x[i,2])
             }else{
-                m[i,j] = m[i-1,j]
+                m[i+1,j+1] = m[i,j+1]
             }
         }
     }
-    
-    value <- m[i,j]
+    value <- m[nr,W+1]
+    names(value) <- NULL
     
     i = nrow(x) + 1
     k = W + 1

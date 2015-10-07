@@ -10,7 +10,7 @@
 
 <meta name="author" content="Clara Schartner and Araya Eamrurksiri" />
 
-<meta name="date" content="2015-10-06" />
+<meta name="date" content="2015-10-07" />
 
 <title>Knapsack</title>
 
@@ -54,7 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">Knapsack</h1>
 <h4 class="author"><em>Clara Schartner and Araya Eamrurksiri</em></h4>
-<h4 class="date"><em>2015-10-06</em></h4>
+<h4 class="date"><em>2015-10-07</em></h4>
 </div>
 
 
@@ -79,10 +79,10 @@ knapsack_objects &lt;-<span class="kw">data.frame</span>(<span class="dt">w=</sp
 <p>The three different functions solve this problem in a different way. But the input is always the same: First a dataframe with the weights and value and a threshold for the weight.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">greedy_knapsack</span>(<span class="dt">x=</span>knapsack_objects[<span class="dv">1</span>:<span class="dv">8</span>,],<span class="dt">W=</span><span class="dv">3500</span>)</code></pre>
 <pre><code>## $value
-## [1] 15428
+## [1] 21849.14
 ## 
 ## $elements
-## [1] 8 3</code></pre>
+## [1] 8 3 6</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">knapsack_dynamic</span>(<span class="dt">x=</span>knapsack_objects[<span class="dv">1</span>:<span class="dv">4</span>,],<span class="dt">W=</span><span class="dv">3500</span>)</code></pre>
 <pre><code>## $value
 ## [1] 8891
@@ -104,7 +104,7 @@ knapsack_objects &lt;-<span class="kw">data.frame</span>(<span class="dt">w=</sp
 <pre><code>## 
 ## Attaching package: 'snow'
 ## 
-## The following objects are masked from 'package:parallel':
+## Die folgenden Objekte sind maskiert von 'package:parallel':
 ## 
 ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
 ##     clusterExport, clusterMap, clusterSplit, makeCluster,
@@ -118,19 +118,25 @@ knapsack_objects &lt;-<span class="kw">data.frame</span>(<span class="dt">w=</sp
 </div>
 <div id="answers" class="section level2">
 <h2>Answers</h2>
+<pre><code>## Warning: ungenutzte Verbindung 8 (&lt;-Clara:11320) geschlossen</code></pre>
+<pre><code>## Warning: ungenutzte Verbindung 7 (&lt;-Clara:11320) geschlossen</code></pre>
+<pre><code>## Warning: ungenutzte Verbindung 6 (&lt;-Clara:11320) geschlossen</code></pre>
+<pre><code>## Warning: ungenutzte Verbindung 5 (&lt;-Clara:11320) geschlossen</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">old_brute_force_knapsack</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">16</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##  22.607   0.132  22.846</code></pre>
+##   21.42    0.00   21.42</code></pre>
 <p>The performance gained by a few improvements is quite large as can be seen.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">brute_force_knapsack</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">16</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.576   0.031   0.606</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">knapsack_dynamic</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">500</span>,],<span class="dt">W=</span><span class="dv">2000</span>))
-<span class="co">#  User      System elapsed </span>
-<span class="co">#165.76        0.15      168.36 </span></code></pre>
+##    0.64    0.00    0.64</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">knapsack_dynamic</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">500</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
+<pre><code>##    user  system elapsed 
+##   21.58    0.02   21.63</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  User      System elapsed </span>
+<span class="co">#  21.86        0.01       22.16 </span></code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">greedy_knapsack</span>(knapsack_objects[<span class="dv">1</span>:<span class="dv">1000000</span>,],<span class="dt">W=</span><span class="dv">2000</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   2.159   0.087   2.282</code></pre>
+##    2.69    0.02    2.71</code></pre>
 </div>
 
 

@@ -25,6 +25,14 @@ n <- 1000000
 knapsack_objects <-data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 
 ## ------------------------------------------------------------------------
+system.time(knapsack_dynamic(knapsack_objects[1:500,],W=2000))
+#  User      System elapsed 
+#  21.86        0.01       22.16 
+
+## ------------------------------------------------------------------------
+system.time(greedy_knapsack(knapsack_objects[1:1000000,],W=2000))
+
+## ------------------------------------------------------------------------
 system.time(old_brute_force_knapsack(knapsack_objects[1:16,],W=2000))
 
 ## ------------------------------------------------------------------------
@@ -33,7 +41,7 @@ system.time(brute_force_knapsack(knapsack_objects[1:16,],W=2000))
 ## ----eval=FALSE----------------------------------------------------------
 #  system.time(knapsack_dynamic(knapsack_objects[1:500,],W=2000))
 #  #  User      System elapsed
-#  #165.76        0.15      168.36
+#  #  21.86        0.01       22.16
 
 ## ------------------------------------------------------------------------
 system.time(greedy_knapsack(knapsack_objects[1:1000000,],W=2000))

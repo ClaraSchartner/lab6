@@ -80,10 +80,8 @@ The performance gained by a few improvements is quite large as can be seen.
 system.time(brute_force_knapsack(knapsack_objects[1:16,],W=2000))
 ```
 
-```{r,eval=FALSE}
+```{r}
 system.time(knapsack_dynamic(knapsack_objects[1:500,],W=2000))
-#  User      System elapsed 
-#165.76        0.15      168.36 
 ```
 
 ```{r}
